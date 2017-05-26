@@ -18,6 +18,7 @@ public class PingClient {
 		}
 
 		return result;
+		
 	}
 
 }
