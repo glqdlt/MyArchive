@@ -1,25 +1,36 @@
 package org.glqdlt.controller.user;
 
-import org.springframework.stereotype.Controller;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.inject.Inject;
+
+import org.glqdlt.home.servers.domain.user.UserVO;
+import org.glqdlt.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping(value = "/user")
 public class UserController {
 
+	@Inject
+	UserService uService;
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public void login() {
+	public UserVO login() throws Exception {
+
+		Map<String, String> map = new HashMap<>();
+
+		return uService.login(map);
 
 	}
-	
+
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)
 	public void logout() {
-		
+
 	}
-	
-	
-	
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public void createGet() {

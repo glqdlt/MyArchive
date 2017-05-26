@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/power")
 @Controller
 public class PowerController {
-	private ServerVO svo = ServerConfigProps.GetIns().GetVO();
+	// private ServerVO svo = ServerConfigProps.GetIns().GetVO();
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String PonwerManager() {
@@ -22,15 +22,15 @@ public class PowerController {
 	@RequestMapping(value = "/status", method = RequestMethod.POST)
 	public void PonwerStatus() {
 
-		PingClient.SendPing(svo);
+		// PingClient.SendPing(svo);
 
 	}
 
 	@RequestMapping(value = "/on", method = RequestMethod.POST)
 	public void PonwerOn() {
-		System.out.println(svo.getIpAddr());
-		System.out.println(svo.getMacAddr());
-		WakeOnLan.SendMagicPacket(svo);
+		// System.out.println(svo.getIpAddr());
+		// System.out.println(svo.getMacAddr());
+		// WakeOnLan.SendMagicPacket(svo);
 
 	}
 

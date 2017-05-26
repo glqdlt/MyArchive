@@ -27,17 +27,23 @@ public class testMvcMock {
 	public void setup() {
 		mock = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
+	
 
-	@Test
+	// @Test
 	public void testHome() throws Exception {
 		mock.perform(MockMvcRequestBuilders.get("/"));
 
 	}
 
-	@Test
+	// @Test
 	public void testPowerOn() throws Exception {
 		mock.perform(MockMvcRequestBuilders.post("/power/on"));
 
+	}
+	
+	@Test
+	public void testUserLogin() throws Exception{
+		mock.perform(MockMvcRequestBuilders.get("/user/login"));
 	}
 
 }
