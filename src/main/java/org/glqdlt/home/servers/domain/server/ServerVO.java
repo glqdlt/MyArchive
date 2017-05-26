@@ -1,4 +1,4 @@
-package org.glqdlt.home.servers.domain;
+package org.glqdlt.home.servers.domain.server;
 
 public class ServerVO {
 

@@ -5,6 +5,17 @@ public class PersonVO {
 	private String name;
 	private String job;
 	private int old;
+	
+	public PersonVO(){
+		
+	}
+
+	public PersonVO(String name, String job, int old) {
+		setName(name);
+		setJob(job);
+		setOld(old);
+
+	}
 
 	public boolean jobCheck(String job) {
 

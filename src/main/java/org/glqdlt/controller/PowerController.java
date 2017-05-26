@@ -1,7 +1,7 @@
 package org.glqdlt.controller;
 
 import org.glqdlt.home.servers.domain.ServerConfigProps;
-import org.glqdlt.home.servers.domain.ServerVO;
+import org.glqdlt.home.servers.domain.server.ServerVO;
 import org.glqdlt.home.utill.PingClient;
 import org.glqdlt.home.utill.WakeOnLan;
 import org.springframework.stereotype.Controller;

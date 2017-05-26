@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.glqdlt.home.servers.domain.server.ServerVO;
+
 
 public class ServerConfigProps {
 

@@ -4,7 +4,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-import org.glqdlt.home.servers.domain.ServerVO;
+import org.glqdlt.home.servers.domain.server.ServerVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

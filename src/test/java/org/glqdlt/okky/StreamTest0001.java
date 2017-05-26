@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -77,10 +78,10 @@ public class StreamTest0001 {
 		List<String> beginningNumbs = Stream.of("a", "b", "1a").filter(x -> Character.isDigit(x.charAt(0)))
 				.collect(Collectors.toList());
 
-		// assertEquals(Arrays.asList("1a"), beginningNumbs);
+		// assertEquals(Arrays.asList("2a"), beginningNumbs);
 		// 1a갑이 들어가있는게 정답인데, 일부러 오탐을 내게 해보았다. 2a로 넣으면 1a != 2a 이므로 Junit 콘솔에서
 		// 에러를 내뱉는다.
-		assertEquals(Arrays.asList("2a"), beginningNumbs);
+		assertEquals(Arrays.asList("1a"), beginningNumbs);
 
 		List<String> beginningMy = Stream.of("seoul", "daegu", "ulsan").filter(x -> {
 
@@ -97,11 +98,37 @@ public class StreamTest0001 {
 	// ~ 그냥 통과됨.
 	@Test
 	public void test004() {
+		// flatmap 은 map 과 map을 합쳐서 할 때 쓴다. flatmap을 안쓰면은 새로운 stream 객체를 생성해야한다.
+		// 이는 리소스 낭비이다.
 
 		List<Integer> together = Stream.of(Arrays.asList(1, 2), Arrays.asList(3, 4)).flatMap(x -> x.stream())
 				.collect(Collectors.toList());
 
 		assertEquals(Arrays.asList(1, 2, 3, 4), together);
+	}
+
+	@Test
+	public void test005() {
+
+		List<PersonVO> persons = Arrays.asList(new PersonVO("박치훈", "분석가", 29), new PersonVO("전일웅", "개발자", 30));
+
+	}
+	
+	@Test
+	public void test006(){
+		
+		
+		
+		List<Integer> ll = new ArrayList<>();
+		
+		for (int i = 0; i < 10000; i++) {
+			ll.add(i);
+		}
+		
+		ll.stream().forEach(System.out::print);
+		
+		ll.parallelStream().forEach(System.out::print);
+		
 	}
 
 }

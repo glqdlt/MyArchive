@@ -3,7 +3,7 @@ package org.glqdlt.home.utill;
 import java.io.IOException;
 import java.net.InetAddress;
 
-import org.glqdlt.home.servers.domain.ServerVO;
+import org.glqdlt.home.servers.domain.server.ServerVO;
 
 public class PingClient {
 
