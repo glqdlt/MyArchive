@@ -1,4 +1,4 @@
-package org.glqdlt.home.utill;
+package org.glqdlt.home.utills;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;

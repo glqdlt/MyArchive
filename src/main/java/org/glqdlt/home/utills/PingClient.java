@@ -1,4 +1,4 @@
-package org.glqdlt.home.utill;
+package org.glqdlt.home.utills;
 
 import java.io.IOException;
 import java.net.InetAddress;

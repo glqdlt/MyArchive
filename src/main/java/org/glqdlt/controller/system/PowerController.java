@@ -1,9 +1,9 @@
-package org.glqdlt.controller;
+package org.glqdlt.controller.system;
 
 import org.glqdlt.home.servers.domain.ServerConfigProps;
 import org.glqdlt.home.servers.domain.server.ServerVO;
-import org.glqdlt.home.utill.PingClient;
-import org.glqdlt.home.utill.WakeOnLan;
+import org.glqdlt.home.utills.PingClient;
+import org.glqdlt.home.utills.WakeOnLan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

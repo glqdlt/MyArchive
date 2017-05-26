@@ -1,4 +1,4 @@
-package org.glqdlt.controller;
+package org.glqdlt.controller.user;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
