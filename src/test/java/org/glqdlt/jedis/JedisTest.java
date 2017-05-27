@@ -11,7 +11,7 @@ public class JedisTest {
 	@Test
 	public void connectionTest() {
 		JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-		JedisPool pool = new JedisPool(jedisPoolConfig, "host주소", 16379, 1000, "패스워드");
+		JedisPool pool = new JedisPool(jedisPoolConfig, "ash725.iptime.org", 16379, 1000, "P@ssw0rdsmsrlfrp");
 		// config, host주소, 포트, 타임아웃, 패스워드
 		Jedis jedis = pool.getResource();
 
