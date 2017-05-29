@@ -3,22 +3,18 @@ package org.glqdlt.home.utills;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FilenameFilter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
-import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class PathFinder {
 
@@ -40,19 +36,20 @@ public class PathFinder {
 
 		for (File childFile : target.listFiles()) {
 			boolean isLoop = false;
+			boolean isZip = false;
 
 			childName = childFile.getName();
 			childAbsolutePath = childFile.getAbsolutePath();
 
 			System.out.println("count:[" + parentCount + "-" + childCount + "]");
+			System.out.println("length: "+target.listFiles().length);
 			System.out.println("imgCheck: " + imgCheck);
 
-			if (imgCheck >= (target.listFiles().length / 2)) {
-
-				System.out.println("+++++++++++++++++++++++++++++++++++++++++");
-				System.out.println(path);
-				System.out.println("+++++++++++++++++++++++++++++++++++++++++");
-
+			if (childCount == target.listFiles().length) {
+				if (imgCheck >= (target.listFiles().length / 2)) {
+					System.out.println("cccccccc");
+					isZip = true;
+				}
 			}
 
 			if (childFile.isFile()) {
@@ -75,6 +72,13 @@ public class PathFinder {
 				isLoop = true;
 			}
 
+			if (isZip) {
+				System.out.println("Callmake");
+				System.out.println(target.getAbsolutePath());
+				System.out.println(target.getParentFile().getAbsolutePath());
+				MakeZipForJava7(target.getAbsolutePath(), target.getParentFile().getAbsolutePath());
+			}
+
 			if (isLoop) {
 
 				try {
@@ -92,7 +96,7 @@ public class PathFinder {
 
 	}
 
-	public void MakeZip(String dir) throws ZipException, IOException {
+	public void MakeZipFOrApacheCommon(String dir) throws ZipException, IOException {
 
 		FileInputStream fis = null;
 
@@ -135,15 +139,19 @@ public class PathFinder {
 		}
 	}
 
-	public void MakeZip2(String dir) {
+	public void MakeZipForJava7(String dir, String zipPath) {
 
 		File Path = new File(dir);
 
+		if (!zipPath.substring(zipPath.length() - 1, zipPath.length()).equals("/")) {
+			zipPath = zipPath + "/";
+		}
+		zipPath = zipPath + RandomStringUtils.randomNumeric(50) + ".zip";
+
 		byte[] buf = new byte[1024];
 
-		String zipPath = "d:/hahaha.zip";
 		try {
-			ZipOutputStream out = new ZipOutputStream(new FileOutputStream(zipPath), Charset.forName("UTF-8"));
+			ZipOutputStream out = new ZipOutputStream(new FileOutputStream(zipPath));
 
 			for (File child : Path.listFiles()) {
 
@@ -151,22 +159,27 @@ public class PathFinder {
 
 				// Path 를 넣으면 폴더와 포함되서 압축이 되어진다.
 				// out.putNextEntry(new ZipEntry(child.getAbsolutePath()));
-
 				// 아래처럼 GetName으로 경로 없이 넣어 버리면 파일들만 압축이 된다.
-				out.putNextEntry(new ZipEntry(child.getName()));
 
-				int len;
+				if (!child.isDirectory()) {
 
-				while ((len = in.read(buf)) > 0) {
+					ZipEntry zipE = new ZipEntry(child.getName());
+					zipE.setTime(0);
+					out.putNextEntry(zipE);
+					int len;
+					while ((len = in.read(buf)) > 0) {
 
-					out.write(buf, 0, len);
+						out.write(buf, 0, len);
 
+					}
+					out.closeEntry();
 				}
-				out.closeEntry();
 				in.close();
+
 			}
 			out.close();
-			// MoveZipFileSha(zipPath);
+
+			MoveZipFileSha(zipPath);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -175,9 +188,7 @@ public class PathFinder {
 	}
 
 	public void MoveZipFileSha(String zipPath) throws Exception {
-		System.out.println(zipPath);
-		String shaZip = DigestUtils.extractFileHashSHA256_2(zipPath);
-		System.out.println(shaZip);
+		String shaZip = DigestUtils.FileHashSHA256(zipPath);
 		File zip = new File(zipPath);
 		if (zip.exists()) {
 			zip.renameTo(new File(zip.getParentFile().getAbsolutePath() + "/" + shaZip + ".zip"));
@@ -206,11 +217,9 @@ public class PathFinder {
 
 	public static void main(String[] args) throws IOException {
 		PathFinder dd = new PathFinder();
-		// String dPat = "D:/test";
-		// dd.pathFind(dPat);
 
-		dd.MakeZip("D:/test/test001");
+		String dPat = "D:/test";
+		dd.pathFind(dPat);
 
 	}
-
 }

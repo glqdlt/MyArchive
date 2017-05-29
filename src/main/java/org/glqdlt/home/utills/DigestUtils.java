@@ -2,10 +2,8 @@ package org.glqdlt.home.utills;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.RandomAccessFile;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -63,7 +61,7 @@ public class DigestUtils {
 		return hashToString;
 	}
 
-	public static String extractFileHashSHA256_2(String filename) throws Exception {
+	public static String FileHashSHA256(String filename) throws Exception {
 
 		final MessageDigest md = MessageDigest.getInstance("SHA-256");
 		InputStream is = null;
