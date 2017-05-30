@@ -15,7 +15,6 @@ public class JedisTest {
 	public void connectionTest() {
 		JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
 		JedisPool pool = new JedisPool(jedisPoolConfig, "url", 16379, 1000, "password");
-
 		// config, host주소, 포트, 타임아웃, 패스워드
 		Jedis jedis = pool.getResource();
 		UserVO uvo = new UserVO();
