@@ -35,6 +35,7 @@ public class PathFinder {
 		String[] fileInformation;
 
 		for (File childFile : target.listFiles()) {
+
 			boolean isLoop = false;
 			boolean isZip = false;
 
@@ -42,7 +43,7 @@ public class PathFinder {
 			childAbsolutePath = childFile.getAbsolutePath();
 
 			System.out.println("count:[" + parentCount + "-" + childCount + "]");
-			System.out.println("length: "+target.listFiles().length);
+			System.out.println("length: " + target.listFiles().length);
 			System.out.println("imgCheck: " + imgCheck);
 
 			if (childCount == target.listFiles().length) {
